@@ -6,7 +6,7 @@
     padding: 0;
     outline: none;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto Mono', monospace;
 }
 table {
     border-collapse: collapse;
@@ -75,7 +75,7 @@ body::-webkit-scrollbar {
 }
 
 .holder {
-    max-width: em(1230);
+    max-width: em(1300);
     margin: 0 auto;
     padding: 0 15px;
     width: 100%;

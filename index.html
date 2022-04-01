@@ -4,76 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
-    <link rel="preload" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" as="style" onload="this.rel='stylesheet'">
+    <!-- <link rel="preload" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" as="style" onload="this.rel='stylesheet'"> -->
 	<link rel="stylesheet" href="css/style.min.css?v1">
     <meta name="theme-color" content="#fff">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" as="style" onload="this.rel='stylesheet'">
-	<meta name="description" content="">
-    <title></title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;500;700&display=swap" rel="stylesheet">
+    <!-- <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" as="style" onload="this.rel='stylesheet'"> -->
+	<script src="https://kit.fontawesome.com/bb399fbda1.js" crossorigin="anonymous"></script>
+    <meta name="description" content="Hi! Are you looking for a professional developer to create a website for your business? Contact me now, don't waste your time!">
+    <title>Vladyslav Prokop | Front-end Developer</title>
     <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
 
-    <div class="preloader"></div>
+    <!-- <div class="preloader"></div> -->
 
     <header>
         <div class="holder">
-            <a href="/" class="logo">
-                <img src="/img/logo.svg" alt="">
-            </a>
-            <div class="burger"></div>
-            <nav>
-                <ul class="flex-container" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
-                    <li>
-                        <a href="" itemprop="discussionUrl"></a>
-                    </li>
-                    <li>
-                        <a href="" itemprop="discussionUrl"></a>
-                    </li>
-                    <li>
-                        <a href="" itemprop="discussionUrl"></a>
-                    </li>
-                    <li>
-                        <a href="" itemprop="discussionUrl"></a>
-                    </li>
-                    <li>
-                        <a href="" itemprop="discussionUrl"></a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="flex-container">
+                <span>
+                    <img src="img/photo.png" alt="">
+                    Vladyslav Prokop
+                </span>
+                <div class="burger"></div>
+                <nav>
+                    <ul class="flex-container" itemscope="" itemtype="https://schema.org/SiteNavigationElement">
+                        <li>
+                            <a name="about" class="anchor" itemprop="discussionUrl">About</a>
+                        </li>
+                        <li>
+                            <a name="portfolio" class="anchor" itemprop="discussionUrl">Portfolio</a>
+                        </li>
+                        <li>
+                            <a name="creative" class="anchor" itemprop="discussionUrl">Creative</a>
+                        </li>
+                        <li>
+                            <a name="contacts" class="anchor" itemprop="discussionUrl">Contacts</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
     <main>
 
-        <section class="">
+        <section class="hello">
+            <div class="holder">
+                <div class="flex-container">
+                    <div class="photo">
+                        <div class="proto-wrapper">
+                            <img src="img/photo.png" alt="">
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="typeit"></h2>
+                        <div class="soq wow">
+                            <a class="wow fadeInDown" data-wow-delay="3.6s" href="https://github.com/wladislaw353" target="_blank" rel="noopener noreferrer noindex nofollow">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a class="wow fadeInDown" data-wow-delay="3.7s" href="https://www.linkedin.com/in/vladislav-prokop/" target="_blank" rel="noopener noreferrer noindex nofollow">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a class="wow fadeInDown" data-wow-delay="3.8s" href="https://t.me/wladislaw353" target="_blank" rel="noopener noreferrer noindex nofollow">
+                                <i class="fa-brands fa-telegram"></i>
+                            </a>
+                            <a class="wow fadeInDown" data-wow-delay="3.9s" href="mailto:wladislaw353@gmail.com" target="_blank" rel="noopener noreferrer noindex nofollow">
+                                <i class="fa-solid fa-envelope"></i>
+                            </a>
+                            <a class="wow fadeInDown" data-wow-delay="4.0s" href="https://wa.me/380949494200" target="_blank" rel="noopener noreferrer noindex nofollow">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                        <div class="wow">
+                            <a name="about" class="scroll-down wow fadeIn" data-wow-delay="4.2s"></a>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="holder">
+                <h2>About</h2>
+                <p>I've been developing turnkey websites for more than 4 years. I've been passionate about the website development since the high school. I consider it my calling.</p>
+                <p>I'm a creative person, it helps me developing interesting and unique websites. I don’t like routine, so I try to automate my work, as well as the company’s work processes. For example, I created an automated e-brief and workflow system with a step-by-step project management system. In addition, I have my builds based on CMS WordPress and Opencart. These technologies  help me to work faster. </p>
+                <p>Sometimes I'm a mentor and I have my own telegram channel <a href="https://t.me/webdev_life" target="_blank" rel="noopener noreferrer noindex nofollow">t.me/webdev_life</a>, where I share lifehacks for the beginners and publish news from the web world. I have experience in project management and task distribution, for example, in systems such as Bitrix24, Jira, etc.</p>
+                <p>I have a good understanding of SEO and how to set up the necessary features for advertising, such as Google Analytics, Facebook Pixel, microdata, etc.</p>
+                <p>I've graduated from two higher education institutions with a master's degree in software engineering. In addition, I took various courses with narrow specialization in web development.</p>
+            </div>
+        </section>
+
+        <section class="" id="portfolio">
             <div class="holder">
                 
             </div>
         </section>
 
-        <section class="">
+        <section class="" id="creative">
             <div class="holder">
                 
             </div>
         </section>
 
-        <section class="">
+        <section class="" id="contacts">
             <div class="holder">
                 
             </div>
         </section>
 
-        <section class="">
-            <div class="holder">
-                
-            </div>
-        </section>
-
-        <section class="">
+        <section class="br">
             <div class="holder">
                 
             </div>
@@ -118,9 +159,11 @@
         </div>
     </div>
     
-    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <!-- <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script> -->
+	<script src="js/type.js"></script>
+	<script src="js/TypeIt.js"></script>
 	<script src="js/spincrement.js"></script>
     <script src="js/main.js?v1"></script>
 </body>
