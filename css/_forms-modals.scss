@@ -13,18 +13,20 @@
     transition: all .3s ease;
     border: 0;
     text-transform: uppercase;
-    background: #9A762D;
-    color: #fff;
+    background: transparent ;
+    color: #bfbefc;
     font-weight: 600;
     font-size: em(16);
     padding: em(19) em(5);
     min-width: 200px;
+    border-radius: 7px;
+    border: 3px solid #bfbefc;
     &:hover {
-        color: #fff;
-        background: #CAA94F;
+        color: #695fef;
+        border-color: #695fef;
+        background: #bfbefc;
         &:active {
-            color: #fff;
-            background: #d49e09;
+            background: #9997eb;
         }
     }
     &:disabled {

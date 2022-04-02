@@ -259,6 +259,10 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         }
     })
 
+    $('.scroll-down').click(()=> {
+        $('a.anchor[name=about]').trigger('click')
+    })
+
     
     // ACTIVE LINK
     $(window).scroll(function() {

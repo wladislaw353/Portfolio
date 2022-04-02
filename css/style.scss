@@ -242,6 +242,7 @@ header {
 
 h2 {
     font-size: em(50);
+    margin-bottom: em(30, 50);
     white-space: nowrap;
 }
 
@@ -255,9 +256,7 @@ section.hello {
     max-height: 1146px;
     display: flex;
     align-items: center;
-    // .holder {
-    //     max-width: em(1400);
-    // }
+    margin-bottom: em(30);
     .flex-container {
         gap: 7%;
         .photo {
@@ -337,17 +336,74 @@ section.hello {
 }
 
 section.about {
-    padding-top: em(50);
+    margin-bottom: em(50);
     p {
         max-width: em(900);
         margin-bottom: em(15);
-        &:nth-of-type(1) {
-            margin-top: em(30);
-        }
         a {
             border-bottom: 2px dotted #4e4b66;
+            &:hover {
+                border-color: #a995fc;
+            }
         }
     }
+    .btn {
+        margin-top: em(25);
+    }
+}
+
+section.about {
+    margin-bottom: em(100);
+    
+}
+
+section.scills {
+    margin-bottom: em(100);
+    .flex-container {
+        gap: 10%;
+        align-items: flex-start;
+        .item {
+            min-width: 45%;
+        }
+    }
+    h3 {
+        font-size: em(25);
+        margin: em(30, 25) 0 em(20, 25);
+        display: block;
+    }
+    p {
+        margin-bottom: em(15);
+        strong {
+            display: flex;
+            align-items: center;
+            gap: em(15);
+            i {
+                color: #bfbefc;
+                width: em(23);
+                transform: translateY(2px);
+            }
+        }
+        span {
+            color: #9fa3be;
+            display: block;
+            padding: em(3) 0 0 em(38);
+        }
+    }
+}
+
+section.mooving-cases {
+    margin-bottom: em(100);
+    
+}
+
+section.portfolio {
+    margin-bottom: em(100);
+    
+}
+
+section.creative {
+    margin-bottom: em(100);
+    
 }
 
 
