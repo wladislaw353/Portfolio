@@ -31,12 +31,12 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
 
     const viewport = window.innerHeight
     $(document).scroll(function() {
+        const scrolled = pageYOffset
+        // avatar
         const $section = $('section.hello')
         const $img = $('section.hello .proto-wrapper')
         const sectionOffset = $section.offset().top
         const imgOffset = $img.offset().top
-        const scrolled = pageYOffset
-        console.log(scrolled);
         if (scrolled < 350) {
             $('header img').removeClass('active')
             $img.removeClass('hide')
@@ -48,6 +48,18 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
             $('header img').addClass('active')
             $img.addClass('hide')
         }
+
+        // mooving-img
+        $moovingSection = document.querySelector('section.mooving-cases')
+        $moovingSectionHeight = parseInt($moovingSection.clientHeight)
+        $moovingSectionOffset = parseInt($moovingSection.offsetTop)
+        scrolledLeft = $moovingSectionOffset - viewport - scrolled
+        // console.log(scrolled + ' = ' + ($moovingSectionHeight + $moovingSectionOffset))
+        if (scrolledLeft < 0 && scrolled < $moovingSectionHeight + $moovingSectionOffset) {
+            console.log(scrolledLeft);
+            $moovingSection.scrollLeft += scrolledLeft / 20 * -1
+        }
+
     })
 
 
@@ -235,6 +247,38 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
             const top = $(document).scrollTop()
             if (top > 100) $('header').addClass('fixed-header')
             else $('header').removeClass('fixed-header')
+        }
+    })
+
+    // CURSOR
+    $('body').mousemove(function(e) {
+        $('#cursor').css({
+            'top': e.clientY - 3,
+            'left': e.clientX - 4
+        })
+        $('#cursor-bg').animate({
+            'top': e.clientY - 3,
+            'left': e.clientX - 4
+        }, 14)
+    })
+    const hover_el = "#totop, a[href], button, input, .anchor, .scroll-down"
+    $(hover_el).mouseover(()=> {
+        $('#cursor').css('transform', 'scale(0)')
+        $('#cursor-bg').css('transform', 'scale(1.6)')
+    })
+    $(hover_el).mouseout(()=> {
+        $('#cursor').css('transform', 'scale(1)')
+        $('#cursor-bg').css('transform', 'scale(1)')
+    })
+    let lived = false
+    $('body').mouseleave(()=> {
+        $('html').removeClass('cursor')
+        lived = true
+    })
+    $('body').mouseover(()=> {
+        if (lived) {
+            $('html').addClass('cursor')
+            lived = false
         }
     })
 

@@ -4,7 +4,6 @@
 .btn {
     user-select: none;
     white-space: nowrap;
-    cursor: pointer;
     -webkit-appearance: none;
     appearance: none;
     text-align: center;
@@ -95,7 +94,6 @@ input, textarea, select {
     &[type='checkbox'] {
         width: 16px;
         height: 16px;
-        cursor: pointer;
         position: relative;
         border-radius: 2px;
         border-color: #B8B8B8;
@@ -143,7 +141,6 @@ input, textarea, select {
     &[type='radio'] {
         width: 16px;
         height: 16px;
-        cursor: pointer;
         position: relative;
         border-radius: 100%;
         border-color: #B8B8B8;
@@ -171,7 +168,6 @@ input, textarea, select {
 select {
     appearance: unset;
     // background: #fff url(../img/arrow.svg) right 7px top 55%/14px no-repeat;
-    cursor: pointer;
 }
 
 form.check-validation {
@@ -260,9 +256,4 @@ form {
             }
         }
     }
-}
-
-[data-modalq-opener],
-[data-modalq-close] {
-    cursor: pointer;
 }

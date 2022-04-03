@@ -21,6 +21,14 @@ html {
     -webkit-tap-highlight-color: transparent;
     -webkit-hyphenate-character: '-';
     tab-size: 4;
+    &.cursor {
+        * {
+            cursor: none;
+        }
+        #cursor, #cursor-bg {
+            opacity: 1;
+        }
+    }
 }
 a, area, button, input, label, select, summary, textarea, [tabindex] {
     -ms-touch-action: manipulation;
@@ -39,19 +47,17 @@ a {
     display: inline-block;
     text-decoration: none;
     transition: all .3s ease;
-    &.anchor {
-        cursor: pointer;
-    }
 }
 section {
     scroll-margin-top: 100px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #D6D6D6;
+    background: #14152a;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: #003C7D;
+    background-color: #fcfcfc;
+    border-radius: 10px;
 }
 ::-webkit-scrollbar {
     width: 5px;
@@ -113,7 +119,6 @@ body::-webkit-scrollbar {
 }
 
 #totop {
-    cursor: pointer;
     opacity: 0;
     visibility: hidden;
     transition: all .3s ease;
