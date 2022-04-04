@@ -429,7 +429,7 @@ section.skills {
 section.mooving-cases {
     margin-bottom: em(100);
     display: flex;
-    overflow-x: auto;
+    overflow-x: hidden;
     img {
         width: 25%;
     }

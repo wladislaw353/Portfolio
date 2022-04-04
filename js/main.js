@@ -30,8 +30,11 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
    
 
     const viewport = window.innerHeight
+    let scrolled_temp = 0
+    let scrolled = 0
     $(document).scroll(function() {
-        const scrolled = pageYOffset
+        scrolled_temp = scrolled
+        scrolled = pageYOffset
         // avatar
         const $section = $('section.hello')
         const $img = $('section.hello .proto-wrapper')
@@ -54,10 +57,8 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         $moovingSectionHeight = parseInt($moovingSection.clientHeight)
         $moovingSectionOffset = parseInt($moovingSection.offsetTop)
         scrolledLeft = $moovingSectionOffset - viewport - scrolled
-        // console.log(scrolled + ' = ' + ($moovingSectionHeight + $moovingSectionOffset))
         if (scrolledLeft < 0 && scrolled < $moovingSectionHeight + $moovingSectionOffset) {
-            console.log(scrolledLeft);
-            $moovingSection.scrollLeft += scrolledLeft / 20 * -1
+            $moovingSection.scrollLeft += 5 * (scrolled_temp > scrolled ? -1 : 1)
         }
 
     })
