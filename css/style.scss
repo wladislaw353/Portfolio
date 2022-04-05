@@ -443,6 +443,57 @@ section.creative {
     margin-bottom: em(100);
 }
 
+section.portfolio {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: em(30);
+        .item {
+            border-radius: 15px;
+            overflow: hidden;
+            img {
+                width: 100%;
+            }
+            .info {
+                background: #fcfcfc;
+                padding: em(30);
+                position: relative;
+                margin-top: -30px;
+                border-radius: 0 0 em(15) em(15);
+                svg {
+                    position: absolute;
+                    left: 0;
+                    top: -19px;
+                    width: 100%;
+                }
+                strong {
+                    display: block;
+                    font-size: em(25);
+                    margin-bottom: em(15);
+                    color: #15152f;
+                }
+                p {
+                    color: #9594a1;
+                }
+            }
+            $item: 0;
+            @for $group from 1 to 4 {
+                @for $count from 1 to 7 {
+                    $item: $item + 1;
+                    &:nth-child(#{$item}) {
+                        svg path {
+                            animation: wave#{$count} 7s linear infinite;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    iframe {
+        width: 100%;
+        height: 90vh;
+    }
+}
+
 section.br {
     height: 500vh;
 }

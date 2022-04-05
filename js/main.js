@@ -60,7 +60,11 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         if (scrolledLeft < 0 && scrolled < $moovingSectionHeight + $moovingSectionOffset) {
             $moovingSection.scrollLeft += 7 * (scrolled_temp > scrolled ? -1 : 1)
         }
+    })
 
+    $('[data-url]').click(function() {
+        const siteUrl = $(this).data('url')
+        $('section.portfolio iframe').attr('src', siteUrl)
     })
 
 
