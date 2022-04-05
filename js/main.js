@@ -35,11 +35,11 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
     $(document).scroll(function() {
         scrolled_temp = scrolled
         scrolled = pageYOffset
+
         // avatar
         const $section = $('section.hello')
         const $img = $('section.hello .proto-wrapper')
         const sectionOffset = $section.offset().top
-        const imgOffset = $img.offset().top
         if (scrolled < 350) {
             $('header img').removeClass('active')
             $img.removeClass('hide')
@@ -58,7 +58,7 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         $moovingSectionOffset = parseInt($moovingSection.offsetTop)
         scrolledLeft = $moovingSectionOffset - viewport - scrolled
         if (scrolledLeft < 0 && scrolled < $moovingSectionHeight + $moovingSectionOffset) {
-            $moovingSection.scrollLeft += 5 * (scrolled_temp > scrolled ? -1 : 1)
+            $moovingSection.scrollLeft += 7 * (scrolled_temp > scrolled ? -1 : 1)
         }
 
     })
