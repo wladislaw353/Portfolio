@@ -66,6 +66,10 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         const type = $(this).index()
         $('.filter button').removeClass('active')
         $(this).addClass('active')
+        const $section = document.querySelector('section.portfolio')
+        window.scrollTo({
+            top: pageYOffset - $section.scrollTop + 1
+        })
         if (type > 0) {
             $(`[data-type]`).hide()
             $(`[data-type="${type}"]`).show()
