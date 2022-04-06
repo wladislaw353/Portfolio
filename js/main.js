@@ -62,9 +62,16 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         }
     })
 
-    $('[data-url]').click(function() {
-        const siteUrl = $(this).data('url')
-        $('section.portfolio iframe').attr('src', siteUrl)
+    $('.filter button').click(function() {
+        const type = $(this).index()
+        $('.filter button').removeClass('active')
+        $(this).addClass('active')
+        if (type > 0) {
+            $(`[data-type]`).hide()
+            $(`[data-type="${type}"]`).show()
+        } else {
+            $(`[data-type]`).show()
+        }
     })
 
 
