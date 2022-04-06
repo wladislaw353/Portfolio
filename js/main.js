@@ -160,26 +160,34 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
     // MODAL
     $('[data-modalq-opener]').click(function() {
         const modal_id = $(this).data('modalq-opener')
-        const modal_target = ($(this).attr('data-modalq-target')) ? $(this).data('modalq-target') : $(this).data('target')
-        const modal_info = ($(this).attr('data-modalq-info')) ? $(this).data('modalq-info') : $(this).data('info')
-        modalqOpen(modal_id, modal_target, modal_info)
+        const modal_url = $(this).data('url')
+        const modal_title = $(this).parent().find('strong').text()
+        modalqOpen(modal_id, modal_url, modal_title)
+        
     })
-    function modalqOpen(modal_id, modal_target = false, modal_info = false) {
-        if (modal_info) $(`#modalq-${modal_id} .modalq-info`).html(modal_info)
-        $('.modalq-wrapper').fadeIn().css('display', 'flex')
-        $('#modalq-' + modal_id).fadeIn().css('display', 'flex')
-        const target_input = $('.modalq input[name="target"]')
-        if (!target_input.val()) target_input.val(modal_target)
-        window.location.hash = '#modal-' + modal_id
+    function modalqOpen(modal_id, modal_url = false, modal_title = false) {
+        $('#modalq-' + modal_id).find('iframe').attr('src', modal_url)
+        $('.modalq-wrapper').fadeIn()
+        $('#modalq-' + modal_id).addClass('active')
+        $('#modalq-' + modal_id).find('span').text(modal_title + ' ' + modal_url.replace('https:/', ''))
+        $('#cursor, #cursor-bg').css('transform', 'scale(0)')
+        $('body').css({
+            'overflow': 'hidden',
+            'padding-right': '10px'
+        })
     }
     function modalqClose() {
-        $('.modalq').fadeOut()
+        $('.modalq').removeClass('active')
         $('.modalq-wrapper').fadeOut()
         setTimeout(() => {
-            $('.modalq input[name="target"]').val('')
-            $('.modalq .modalq-info').html('')
+            $('.modalq span').html('')
+            $('.modalq iframe').attr('src', '')
+            $('#cursor, #cursor-bg').css('transform', 'scale(1)')
+            $('body').css({
+                'overflow': 'auto',
+                'padding-right': '0'
+            })
         }, 300)
-        if (location.hash.includes('#modal-')) history.replaceState(null, null, ' ')
     }
     window.addEventListener('hashchange', () => {
         if (!location.hash) modalqClose()
@@ -188,11 +196,6 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
     $(document).mouseup(e => {
         if ($('.modalq-wrapper').is(':visible') && $('.modalq-wrapper').has(e.target).length === 0) modalqClose()
     })
-    if (location.hash.includes('#modal-')) {
-        const modal_id = location.hash.replace('#modal-', '')
-        const modal_target = 'Auto Opened'
-        modalqOpen(modal_id, modal_target)
-    }
 
     
     // PHONE MASK

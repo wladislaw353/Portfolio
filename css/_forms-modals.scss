@@ -188,72 +188,68 @@ form {
     position: fixed;
     left: 0;
     top: 0;
-    padding: 15px;
     width: 100vw;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: rgba(0, 0, 0, 0.55);
     z-index: 9999;
     display: none;
+    backdrop-filter: blur(5px);
+    * {
+        cursor: default !important;
+    }
     .modalq {
-        display: none;
-        position: relative;
+        transform: scale(0);
+        transition: all .3s ease-in-out;
+        position: absolute;
+        width: 90vw;
+        height: 90vh;
         background: #fff;
-        padding: 30px;
-        width: 100%;
-        max-height: calc(var(--vh, 100vh) - 30px);
-        max-width: em(550);
-        flex-direction: column;
-        overflow-x: hidden;
-        overflow-y: auto;
-        @media(max-width: 1023px) {
-            height: auto;
+        left: 5vw;
+        top: 5vh;
+        padding: em(10);
+        border-radius: 15px;
+        &.active {
+            transform: scale(1);
         }
-        svg[data-modalq-close] {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            user-select: none;
-            padding: 0;
-            width: auto;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            max-width: em(460);
-            margin: 0 auto;
-            width: 100%;
-        }
-        .title {
-            font-size: em(30);
-            text-align: center;
-            font-weight: 500;
-            margin: 0 auto em(15, 30);
-            max-width: 500px;
-            @media(max-width: 767px) {
-                font-size: em(30);
-            }
-        }
-        & > svg {
-            width: 100%;
-            padding-bottom: 30px;
-            display: block;
-        }
-        &#modalq-0 {
+        .flex-container {
+            justify-content: space-between;
+            padding: 0 em(10);
+            padding-bottom: em(10);
             & > div {
-                height: 100%;
-                display: flex;
-                text-align: center;
-                justify-content: center;
-                align-items: center;
-                font-size: em(27);
-                font-weight: 500;
-                max-width: em(420, 27);
-                margin: 0 auto;
-                line-height: 130%;
+                min-width: em(70);
             }
+            button {
+                width: em(20);
+                height: em(20);
+                border-radius: 100%;
+                border: 0;
+                margin-top: em(5);
+                transform: scale(1.01);
+                transition: all .3s ease;
+                cursor: pointer !important;
+                &:nth-child(1) {
+                    background: #f15a54;
+                }
+                &:nth-child(2) {
+                    background: #fabc35;
+                }
+                &:nth-child(3) {
+                    background: #5bc740;
+                }
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+            span {
+                color: #9594a1;
+            }
+        }
+        iframe {
+            width: 100%;
+            height: calc(100% - 34px);
+            border-radius: 5px;
+            background: #fff;
+            overflow: hidden;
         }
     }
 }
