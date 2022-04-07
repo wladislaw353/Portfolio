@@ -53,20 +53,29 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         }
 
         // mooving-img
-        $moovingSection = document.querySelector('section.mooving-cases')
-        $moovingSectionHeight = parseInt($moovingSection.clientHeight)
-        $moovingSectionOffset = parseInt($moovingSection.offsetTop)
-        scrolledLeft = $moovingSectionOffset - viewport - scrolled
-        if (scrolledLeft < 0 && scrolled < $moovingSectionHeight + $moovingSectionOffset) {
-            $moovingSection.scrollLeft += 7 * (scrolled_temp > scrolled ? -1 : 1)
+        if (!scrollingToAnchor) {
+            $moovingSection = document.querySelector('section.mooving-cases')
+            $moovingSectionHeight = parseInt($moovingSection.clientHeight)
+            $moovingSectionOffset = parseInt($moovingSection.offsetTop)
+            scrolledLeft = $moovingSectionOffset - viewport - scrolled
+            if (scrolledLeft < 0 && scrolled < $moovingSectionHeight + $moovingSectionOffset) {
+                $moovingSection.scrollLeft += 7 * (scrolled_temp > scrolled ? -1 : 1)
+            }
         }
 
         // hide header, when pwa section is visible
         const waveOffset = scrolled - $('.waves-wrapper:nth-child(1)').offset().top
-        if (waveOffset > -80 && waveOffset < viewport + 150) {
+        if (waveOffset > -80) {
             $('header').css('transform', 'translateY(-100px)')
         } else {
             $('header').css('transform', 'none')
+        }
+
+        // make pwa section visible
+        if (scrolled > viewport * 2) {
+            $('section.pwa').css('visibility', 'visible')
+        } else {
+            $('section.pwa').css('visibility', 'hidden')
         }
     })
 

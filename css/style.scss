@@ -19,7 +19,7 @@ header {
     z-index: 999;
     backdrop-filter: blur(10px);
     background: #14152a87;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     &.fixed-header {
     }
     .flex-container {
@@ -194,7 +194,7 @@ section.hello {
     align-items: center;
     background: #14152a;
     position: relative;
-    z-index: 3;
+    // z-index: 3;
     .flex-container {
         gap: 7%;
         .photo {
@@ -362,7 +362,7 @@ section.portfolio {
             border: 0;
             font-size: em(16);
             color: #fff;
-            transition: all .3s ease;
+            transition: all 0.3s ease;
             background: none;
             &.active {
                 border-radius: 30px;
@@ -423,7 +423,7 @@ section.portfolio {
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        transition: transform .3s cubic-bezier(0.75, -1.27, 0.3, 2.33), box-shadow .3s ease;
+                        transition: transform 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33), box-shadow 0.3s ease;
                         transform: scale(1.01);
                         i {
                             color: #ee61c7;
@@ -475,6 +475,7 @@ section.pwa {
     justify-content: space-between;
     position: relative;
     z-index: 2;
+    visibility: hidden;
     .waves-wrapper {
         flex-direction: column;
         align-items: center;
@@ -482,7 +483,7 @@ section.pwa {
         svg {
             display: block;
             path {
-                animation: wave-big 6s linear infinite;
+                animation: wave-big-1 6s linear infinite;
             }
         }
     }
@@ -515,7 +516,7 @@ section.pwa {
                     max-width: em(800);
                     padding-bottom: em(10);
                     position: relative;
-                    z-index: 2;
+                    z-index: 3;
                     &:nth-child(2),
                     &:nth-child(3),
                     &:nth-child(4) {
@@ -533,6 +534,11 @@ section.pwa {
     }
     .fixed-section + .waves-wrapper {
         transform: scale(-1);
+        svg {
+            path {
+                animation: wave-big-2 6s linear infinite;
+            }
+        }
     }
     .phone {
         position: relative;
@@ -545,9 +551,9 @@ section.pwa {
             z-index: 1;
         }
         &:after {
-            content: '';
+            content: "";
             position: absolute;
-            z-index: 2;
+            z-index: 3;
             top: 4px;
             left: 32%;
             width: 36%;
@@ -563,7 +569,7 @@ section.pwa {
             font-size: 50px;
             z-index: -1;
             transform: translateY(50px);
-            transition: all .3s cubic-bezier(0.25, 0.1, 0.46, 1.32);
+            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.46, 1.32);
         }
     }
     .img-grid {
@@ -594,14 +600,86 @@ section.pwa {
     }
 }
 
-
 section.creative {
     background: #14152a;
-    padding: em(100) 0;
+    // padding: em(100) 0;
     position: relative;
-    z-index: 3;
+    z-index: 2;
+    height: 100vh;
+    .fixed-img {
+        z-index: 3;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #000;
+        overflow: hidden;
+        .bg {
+            transform: scale(2);
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0.4;
+            background-image: url(../img/head-bg.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .content {
+            position: relative;
+            height: 100%;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #14152a, #0000);
+        }
+    }
+    .page-content {
+        height: calc(100vh + 1000px);
+        position: relative;
+        z-index: 10;
+        .iframe-wrapper {
+            width: 100%;
+            height: 100%;
+            background: #fcfcfc;
+            transition: all 0.3s ease;
+            iframe {
+                width: 100%;
+                height: 100%;
+                border: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+                position: absolute;
+                top: 0;
+            }
+            img {
+                width: 100%;
+                display: none;
+            }
+            &.active {
+                border-radius: 7px;
+                overflow: hidden;
+                position: fixed;
+                top: 0;
+                left: 0;
+                img:nth-child(1) {
+                    display: block;
+                }
+                iframe {
+                    background: #fff;
+                }
+            }
+            &.scrolled iframe {
+                pointer-events: unset;
+            }
+        }
+    }
+    .parallax-wrapper {
+        height: 100vh;
+    }
 }
-
-// section.br {
-//     height: 500vh;
-// }
