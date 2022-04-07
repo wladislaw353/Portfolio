@@ -60,6 +60,14 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         if (scrolledLeft < 0 && scrolled < $moovingSectionHeight + $moovingSectionOffset) {
             $moovingSection.scrollLeft += 7 * (scrolled_temp > scrolled ? -1 : 1)
         }
+
+        // hide header, when pwa section is visible
+        const waveOffset = scrolled - $('.waves-wrapper:nth-child(1)').offset().top
+        if (waveOffset > -80 && waveOffset < viewport + 150) {
+            $('header').css('transform', 'translateY(-100px)')
+        } else {
+            $('header').css('transform', 'none')
+        }
     })
 
     $('.filter button').click(function() {
@@ -78,95 +86,6 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         }
     })
 
-
-    // SLIDER
-	const slider1 = '.swiper'
-	if ($(slider1).length) {
-		new Swiper(slider1, {
-			slidesPerView: 1,
-			spaceBetween: 5,
-			freeMode: false,
-            speed: 900,
-            effect: 'fade',
-            draggable: true,
-			direction: 'horizontal',
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                type: 'bullets',
-                clickable: true,
-            },
-            autoplay: {
-                delay: 5000,
-            },
-			breakpoints: {
-                550: {
-                    slidesPerView: 2
-				},
-				650: {
-                    slidesPerView: 3
-				},
-				800: {
-                    slidesPerView: 4
-				},
-			}
-		})
-        // const swiper1 = document.querySelector(slider1).swiper
-	}
-    
-
-    // ACCORDION
-    $('.accordion .item .header').click(function() {
-        if ($(this).parent().hasClass('active')) {
-            $(this).parent().removeClass('active').find('.content').slideUp()
-        } else {
-            if (!$(this).parent().parent().hasClass('multiple')) {
-                $('.accordion .item').removeClass('active').find('.content').slideUp()
-            }
-            $(this).parent().addClass('active').find('.content').slideDown()
-        }
-    })
-
-
-    // TABS
-    $('.tab-container .tab-nav span').click(function() {
-        $('.tab-container .tab-nav span').removeClass('active')
-        $(this).addClass('active')
-        $('.tab-container .tab-content .item').hide().removeClass('active')
-        $(`.tab-container .tab-content .item:nth-child(${parseInt($(this).index()) + 1})`).fadeIn().addClass('active')
-    })
-    
-
-    // FORMS
-    function ajax(msg) {
-        $.ajax({
-            type: 'POST',
-            url: '/send.php',
-            data: {msg: JSON.stringify(msg), utm: JSON.stringify(utm)},
-            success: (data)=> {
-                if (typeof data === 'string') data = JSON.parse(data)
-                $('.modalq-wrapper').fadeIn().css('display', 'flex')
-                $('.modalq').hide()
-                $('#modalq-0').fadeIn()
-				if ($('head').html().includes('f.fbq')) fbq('track', 'Lead')
-            },
-            error: (xhr, str)=> {
-                console.error(`${JSON.stringify(xhr, null, '\t')}; ${str}`)
-            }
-        })
-    }
-    $('[id^="formx-"]').submit(function (e) {
-		e.preventDefault()
-        $(this).find('button').prop('disabled', true)
-        const msg = $(this).serializeArray()
-        ajax(msg)
-    })
-    $('form button[type="submit"]').click(function() {
-        $(this).parent().addClass('check-validation')
-    })
 
     // MODAL
     $('[data-modalq-opener]').click(function() {
@@ -208,37 +127,6 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         if ($('.modalq-wrapper').is(':visible') && $('.modalq-wrapper').has(e.target).length === 0) modalqClose()
     })
 
-    
-    // PHONE MASK
-    let phoneMask = ''
-    if (location.hostname != '127.0.0.1') {
-        $.get("https://ipinfo.io", response => {
-            // CHECK LOCATION
-            switch(response.country) {
-                case 'UA':
-                    phoneMask = '+38(999)999-99-99'
-                    break
-                case 'RU':
-                    phoneMask = '+7(999)999-99-99'
-                    break
-                default:
-                    phoneMask = ''
-                    break
-            }
-            Inputmask({
-                'mask': phoneMask,
-                showMaskOnHover: false,
-                showMaskOnFocus: true
-            }).mask(document.querySelectorAll('.phone-mask'))
-        }, 'jsonp')
-    } else console.info('Phone Mask is disabled for 127.0.0.1')
-
-    // INPUT FILE
-    $('.file-btn button').click(function(e) {
-        e.preventDefault()
-        $(this).parent().find('input').trigger('click')
-    })
-    
 
     // BURGER
     $('header .burger').click(()=> {
@@ -347,40 +235,6 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         } else {
             $(`nav a`).removeClass('active')
         }
-    }
-
-
-    // READ MORE
-    $('.readmore button').click(function() {
-        $(this).parent().parent().find('.readmore-content').toggleClass('active')
-        const text = $(this).data('text')
-        $(this).data('text', $(this).find('span').text())
-        $(this).find('span').text(text)
-    })
-
-
-    // FB & TWITTER & PINTEREST & TELEGRAM SHARE BUTTONS
-    $('#fb-shareq').click(function() {
-        open(`https://www.facebook.com/sharer.php?u=${$(this).data('href')}`, "displayWindow", "width=520,height=300,left=350,top=170,status=no,toolbar=no,menubar=no")
-    })
-    $('#tw-shareq').click(function() {
-        open(`https://twitter.com/share?text=${$(this).data('href')}`, "displayWindow", "width=520,height=300,left=350,top=170,status=no,toolbar=no,menubar=no")
-    })
-    $('#pt-shareq').click(function() {
-        open(`http://pinterest.com/pin/create/button/?url=${$(this).data('href')}`, "displayWindow", "width=520,height=300,left=350,top=170,status=no,toolbar=no,menubar=no")
-    })
-    $('#tg-shareq').click(function() {
-        open(`https://telegram.me/share/url?url=${$(this).data('href')}`, '_blank')
-    })
-
-
-    // FANCYBOX
-    if ($('[data-fancybox]').length > 0) {
-        Fancybox.bind("[data-fancybox]", {
-            Thumbs: {
-              autoStart: false,
-            },
-        })
     }
 
 
