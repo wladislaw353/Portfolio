@@ -194,6 +194,7 @@ section.hello {
     align-items: center;
     background: #14152a;
     position: relative;
+    z-index: 3;
     .flex-container {
         gap: 7%;
         .photo {
@@ -277,6 +278,7 @@ section.about {
     background: #14152a;
     padding: em(30) 0 em(100);
     position: relative;
+    z-index: 3;
     p {
         max-width: em(900);
         margin-bottom: em(15);
@@ -296,6 +298,7 @@ section.skills {
     background: #14152a;
     padding: em(100) 0;
     position: relative;
+    z-index: 3;
     .flex-container {
         gap: 10%;
         align-items: flex-start;
@@ -338,6 +341,7 @@ section.mooving-cases {
     display: flex;
     overflow-x: hidden;
     position: relative;
+    z-index: 3;
     img {
         width: 25%;
     }
@@ -347,7 +351,7 @@ section.portfolio {
     padding: em(100) 0;
     background: #14152a;
     position: relative;
-    z-index: 2;
+    z-index: 3;
     .filter {
         margin-bottom: em(30);
         display: flex;
@@ -469,6 +473,8 @@ section.pwa {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+    z-index: 2;
     .waves-wrapper {
         flex-direction: column;
         align-items: center;
@@ -490,52 +496,110 @@ section.pwa {
         background: #fcfcfc;
         max-width: unset;
         z-index: -1;
+        h2 {
+            display: flex;
+            align-items: center;
+            gap: em(10);
+            img {
+                width: em(30);
+            }
+        }
+        h3 {
+            font-size: em(30);
+            margin-bottom: em(20, 30);
+        }
+        .flex-container {
+            gap: em(50);
+            .info {
+                p {
+                    max-width: em(800);
+                    padding-bottom: em(10);
+                    position: relative;
+                    z-index: 2;
+                    &:nth-child(2),
+                    &:nth-child(3),
+                    &:nth-child(4) {
+                        backdrop-filter: blur(10px);
+                    }
+                    &:nth-child(2) {
+                        border-radius: 0 10px 0 0;
+                    }
+                    &:nth-child(4) {
+                        border-radius: 0 0 10px 0;
+                    }
+                }
+            }
+        }
     }
     .fixed-section + .waves-wrapper {
         transform: scale(-1);
     }
     .phone {
+        position: relative;
+        display: inline-block;
         video {
             height: calc(80vh - 100px);
+            border: 5px solid #121212;
+            border-radius: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            z-index: 2;
+            top: 4px;
+            left: 32%;
+            width: 36%;
+            height: 3.4%;
+            background: #121212;
+            border-radius: 0 0 12px 12px;
+        }
+        i {
+            position: absolute;
+            color: #9fc037;
+            top: -35px;
+            left: calc(50% - 56px / 2);
+            font-size: 50px;
+            z-index: -1;
+            transform: translateY(50px);
+            transition: all .3s cubic-bezier(0.25, 0.1, 0.46, 1.32);
+        }
+    }
+    .img-grid {
+        display: flex;
+        gap: em(15);
+        width: 60vh;
+        position: absolute;
+        right: -10vh;
+        bottom: -10vh;
+        transform: rotate(330deg);
+        align-items: center;
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: em(15);
+            &:nth-child(1) {
+                padding-top: 20vh;
+            }
+            &:nth-child(2) {
+                padding-top: 20vh;
+            }
+            img {
+                width: 100%;
+                border: 2px solid #121212;
+                border-radius: 5px;
+            }
         }
     }
 }
 
-.phone {
-    position: relative;
-    display: inline-block;
-    video, img {
-        border: 5px solid #121212;
-        border-radius: 15px;
-        position: relative;
-        z-index: 1;
-    }
-    &:after {
-        content: '';
-        position: absolute;
-        z-index: 2;
-        top: 4px;
-        left: 32%;
-        width: 36%;
-        height: 18px;
-        background: #121212;
-        border-radius: 0 0 12px 12px;
-    }
-    i {
-        position: absolute;
-        color: #9fc037;
-        top: -35px;
-        left: calc(50% - 56px / 2);
-        font-size: 50px;
-        z-index: -1;
-        transform: translateY(50px);
-        transition: all .3s cubic-bezier(0.25, 0.1, 0.46, 1.32);
-    }
-}
 
 section.creative {
     background: #14152a;
     padding: em(100) 0;
+    position: relative;
+    z-index: 3;
 }
 
 // section.br {
