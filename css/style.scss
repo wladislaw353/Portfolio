@@ -505,29 +505,23 @@ section.pwa {
                 width: em(30);
             }
         }
-        h3 {
-            font-size: em(30);
-            margin-bottom: em(20, 30);
-        }
         .flex-container {
             gap: em(50);
             .info {
+                h3 {
+                    font-size: em(30);
+                    margin-bottom: em(20, 30);
+                    & + div {
+                        backdrop-filter: blur(10px);
+                        border-radius: 0 10px 10px 0;
+                        position: relative;
+                        z-index: 3;
+                        padding-top: em(10);
+                    }
+                }
                 p {
                     max-width: em(800);
                     padding-bottom: em(10);
-                    position: relative;
-                    z-index: 3;
-                    &:nth-child(2),
-                    &:nth-child(3),
-                    &:nth-child(4) {
-                        backdrop-filter: blur(10px);
-                    }
-                    &:nth-child(2) {
-                        border-radius: 0 10px 0 0;
-                    }
-                    &:nth-child(4) {
-                        border-radius: 0 0 10px 0;
-                    }
                 }
             }
         }
@@ -600,34 +594,36 @@ section.pwa {
     }
 }
 
+
 section.creative {
     background: #14152a;
     // padding: em(100) 0;
     position: relative;
     z-index: 2;
-    height: 100vh;
     .fixed-img {
+        height: 100vh;
         z-index: 3;
-        position: absolute;
+        position: relative;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
         background-color: #000;
         overflow: hidden;
+        &.animating {
+            position: absolute;
+        }
         .bg {
             transform: scale(2);
             z-index: 1;
             position: absolute;
+            transition: all .1s linear;
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
             opacity: 0.4;
-            background-image: url(../img/head-bg.jpg);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
+            background: url(../img/head-bg.jpg) center / cover no-repeat;
         }
         .content {
             position: relative;
@@ -640,42 +636,73 @@ section.creative {
         }
     }
     .page-content {
-        height: calc(100vh + 1000px);
-        position: relative;
+        position: absolute;
         z-index: 10;
+        height: calc(100vh + 1000px);
+        width: 100%;
         .iframe-wrapper {
             width: 100%;
-            height: 100%;
-            background: #fcfcfc;
+            height: 100vh;
             transition: all 0.3s ease;
+            padding: em(10);
+            .window-header {
+                transition: all 0.3s ease;
+                pointer-events: none;
+                opacity: 0;
+                .flex-container {
+                    justify-content: space-between;
+                    padding: 0 em(10);
+                    padding-bottom: em(10);
+                    & > div {
+                        min-width: em(70);
+                    }
+                    button {
+                        width: em(20);
+                        height: em(20);
+                        border-radius: 100%;
+                        border: 0;
+                        margin-top: em(5);
+                        transform: scale(1.01);
+                        transition: all .3s ease;
+                        &:nth-child(1) {
+                            background: #f15a54;
+                        }
+                        &:nth-child(2) {
+                            background: #fabc35;
+                        }
+                        &:nth-child(3) {
+                            background: #5bc740;
+                        }
+                    }
+                    span {
+                        color: #9594a1;
+                    }
+                }
+            }
             iframe {
                 width: 100%;
                 height: 100%;
-                border: 0;
-                pointer-events: none;
+                height: calc(100% - 34px);
+                border-radius: 5px;
+                background: #fff;
+                overflow: hidden;
                 transition: all 0.3s ease;
-                position: absolute;
-                top: 0;
-            }
-            img {
-                width: 100%;
-                display: none;
+                pointer-events: none;
             }
             &.active {
-                border-radius: 7px;
-                overflow: hidden;
+                border-radius: 15px;
                 position: fixed;
                 top: 0;
                 left: 0;
-                img:nth-child(1) {
-                    display: block;
-                }
-                iframe {
-                    background: #fff;
+                background: #fff;
+                .window-header {
+                    opacity: 1;
                 }
             }
-            &.scrolled iframe {
-                pointer-events: unset;
+            &.scrolled {
+                iframe {
+                    pointer-events: unset;
+                }
             }
         }
     }

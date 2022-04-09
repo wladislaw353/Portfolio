@@ -30,10 +30,12 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
    
 
     const viewport = window.innerHeight
-    let scrolled_temp = 0
+    const pageHeight = document.documentElement.scrollHeight
+    let scrolledTemp = 0
     let scrolled = 0
+    let creativeInViewport = 0
     $(document).scroll(function() {
-        scrolled_temp = scrolled
+        scrolledTemp = scrolled
         scrolled = pageYOffset
 
         // avatar
@@ -59,7 +61,7 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
             $moovingSectionOffset = parseInt($moovingSection.offsetTop)
             scrolledLeft = $moovingSectionOffset - viewport - scrolled
             if (scrolledLeft < 0 && scrolled < $moovingSectionHeight + $moovingSectionOffset) {
-                $moovingSection.scrollLeft += 7 * (scrolled_temp > scrolled ? -1 : 1)
+                $moovingSection.scrollLeft += 7 * (scrolledTemp > scrolled ? -1 : 1)
             }
         }
 
@@ -77,7 +79,92 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         } else {
             $('section.pwa').css('visibility', 'hidden')
         }
+
+        // creative section
+        const $fixedImg             = $('section.creative .fixed-img')
+        const $creativeTitle        = $('section.creative .fixed-img h2')
+        const $creativeBg           = $('section.creative .fixed-img > .bg')
+        const $creativeIframe       = $('section.creative .iframe-wrapper')
+        const creativeSectionOffset = $('section.creative').offset().top
+        const creativeOffset = $fixedImg.offset().top
+        if (scrolled - creativeOffset > -50) {
+            const scrolledIntoCreative = scrolled - creativeSectionOffset
+            const creativeScale = 2 - scrolledIntoCreative / 900
+            const creativeOpacity = 1 - scrolledIntoCreative / 700
+            // анимируем фон и заголовок
+            $creativeTitle.css({
+                'opacity': creativeOpacity,
+                'transform': `translateY(${scrolledIntoCreative / 2.5 * -1}px)`
+            })
+            $creativeBg.css('transform', `scale(${creativeScale > 1 ? creativeScale : 1})`)
+
+            // активируем окно фрейма
+            if (scrolledIntoCreative >= viewport) {
+                $creativeIframe.addClass('active')
+                console.log(1 - scrolledIntoCreative / 1600);
+                $creativeIframe.css('transform', `scale(${1 - scrolledIntoCreative / 1200})`)
+            } else {
+                $creativeIframe.removeClass('active')
+            }
+
+            // активируем/деактивируем движение секции
+            if (scrolledTemp < scrolled) {
+                $fixedImg.css('position', 'fixed')
+            } else {
+                if (scrolled < pageHeight - viewport * 2 - 1000) {
+                    $fixedImg.css('position', 'absolute')
+                }
+            }
+        }
+        
     })
+    
+    // === lastest window animation
+    const $headImage        = document.querySelector('.fixed-img > .bg')
+    const $headTitle        = document.querySelector('.fixed-img > .content > h2')
+    const $iframeContainer  = document.querySelector('.iframe-wrapper')
+    const $iframe           = document.querySelector('.iframe-wrapper iframe')
+    let   $iframeHeader     = document.querySelector('.iframe-wrapper .window-header')
+
+    const headImageInitScale = 2
+
+    let headImageScaleDelta  = headImageInitScale - 1
+    let headImageCurentScale = headImageInitScale
+    let titleCurentOpacity   = 0
+    let titleCurentTransform = 0
+    let iframeScale          = 1
+
+    function setView(scrolled) {
+        // if (scrolled < viewport) {
+        //     headImageCurentScale = headImageInitScale - (headImageScaleDelta / viewport * scrolled)
+        //     titleCurentOpacity =  scrolled / 200
+        //     titleCurentTransform = 0 - (scrolled / 2)
+        //     $iframeContainer.classList.remove('active')
+        //     $iframe.style.cssText = `height: 100%; transform: translateY(0)`
+        //     $iframeContainer.style.cssText = `transform: scale(1)`
+        // } else {
+            headImageCurentScale = 1
+            titleCurentOpacity = 50
+            titleCurentTransform = viewport / 2 + 54
+            $iframeContainer.classList.add('active')
+            $iframe.style.cssText = `height: calc(100% - ${$iframeHeader.height}px); transform: translateY(${$iframeHeader.height}px)`
+            const scale = 1 - (scrolled / (viewport * 3)) + 0.3
+            if(scale > 0.76 && scale < 1) {
+                iframeScale = scale
+                $iframeContainer.classList.remove('scrolled')
+            }
+            if(scale <= 0.76) {
+                $iframeContainer.classList.add('scrolled')
+            }
+            // console.log(1 - (scrolled / (viewport * 3)) + 0.3)
+            $iframeContainer.style.cssText = `transform: scale(${iframeScale})`
+        // }
+
+        $headImage.style.cssText = `transform: scale(${headImageCurentScale})`
+        $headTitle.style.cssText = `filter: blur(${titleCurentOpacity}px); transform: translateY(${titleCurentTransform}px)`
+    }
+    // =====
+
 
     $('.filter button').click(function() {
         const type = $(this).index()
