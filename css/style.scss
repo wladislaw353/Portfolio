@@ -638,7 +638,7 @@ section.creative {
     .page-content {
         position: absolute;
         z-index: 10;
-        height: calc(100vh + 1000px);
+        height: calc(100vh + 300px);
         width: 100%;
         .iframe-wrapper {
             width: 100%;
@@ -695,6 +695,7 @@ section.creative {
                 top: 0;
                 left: 0;
                 background: #fff;
+                transform: scale(.85);
                 .window-header {
                     opacity: 1;
                 }
