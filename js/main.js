@@ -5,10 +5,8 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
 
     if ($('.preloader')) {
         $('.preloader').addClass('active')
-        setTimeout(() => {
-            $('.preloader').fadeOut()
-            new WOW().init()
-        }, is_home() ? 2000 : 1000)
+        $('.preloader').fadeOut()
+        new WOW().init()
     } else {
         new WOW().init()
     }
@@ -33,7 +31,6 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
     const pageHeight = document.documentElement.scrollHeight
     let scrolledTemp = 0
     let scrolled = 0
-    let creativeInViewport = 0
     $(document).scroll(function() {
         scrolledTemp = scrolled
         scrolled = pageYOffset
@@ -101,12 +98,14 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
             // активируем окно фрейма
             if (scrolledIntoCreative >= viewport) {
                 $creativeIframe.addClass('active')
+                $('#cursor, #cursor-bg').css('transform', 'scale(0)')
                 setTimeout(() => {
                     $creativeIframe.addClass('scrolled')
                 }, 300)
             } else {
                 $creativeIframe.removeClass('scrolled')
                 $creativeIframe.removeClass('active')
+                $('#cursor, #cursor-bg').css('transform', 'scale(1)')
             }
 
             // активируем/деактивируем движение секции
@@ -121,8 +120,7 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         
     })
 
-
-
+    // portfolio fiter
     $('.filter button').click(function() {
         const type = $(this).index()
         $('.filter button').removeClass('active')

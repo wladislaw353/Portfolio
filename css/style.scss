@@ -380,6 +380,7 @@ section.portfolio {
             img {
                 width: 100%;
                 aspect-ratio: 1.74;
+                text-align: center;
                 background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
             }
             .info {
@@ -597,7 +598,6 @@ section.pwa {
 
 section.creative {
     background: #14152a;
-    // padding: em(100) 0;
     position: relative;
     z-index: 2;
     .fixed-img {
@@ -633,6 +633,9 @@ section.creative {
             align-items: center;
             justify-content: center;
             background: linear-gradient(180deg, #14152a, #0000);
+            h2 {
+                transition: all .05s linear;
+            }
         }
     }
     .page-content {

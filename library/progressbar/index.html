@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProgressBar Canvas</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+<body>
+
+    <canvas id="c1"></canvas>
+    <canvas id="c2"></canvas>
+    <canvas id="c3"></canvas>
+
+<script>
+
+    // Init
+    const $canvas  = document.querySelector('#c1');
+    const ctx      = $canvas.getContext('2d');
+
+    const $canvas2 = document.querySelector('#c2');
+    const ctx2     = $canvas2.getContext('2d');
+
+    const $canvas3 = document.querySelector('#c3');
+    const ctx3     = $canvas3.getContext('2d');
+
+    const windowWidth  = window.innerWidth
+    const windowHeight = window.innerHeight
+
+    $canvas.width   = windowWidth
+    $canvas.height  = 200
+
+    $canvas2.width  = windowWidth
+    $canvas2.height = 200
+
+    $canvas3.width  = windowWidth
+    $canvas3.height = windowHeight - 400
+
+    // #1 
+    ctx.lineWidth = 10
+    // Серая линия
+    ctx.strokeStyle = '#dadada'
+    ctx.beginPath()
+    ctx.moveTo(100, 100)
+    ctx.lineTo(1000, 100)
+    ctx.fill()
+    ctx.stroke()
+    // Красная линия
+    ctx.strokeStyle = 'red'
+    ctx.beginPath()
+    ctx.moveTo(100, 100)
+    // Подпись
+    ctx.strokeStyle = "#000"
+    ctx.font = "10pt Arial"
+    ctx.textBaseline = "middle"
+    ctx.fillText("0%", 1010, 101)
+
+    function linearProgress(width, value) {
+        if(value <= 100) {
+            ctx.strokeStyle = 'red'
+            ctx.lineTo((width-100)*value/100+100, 100)
+            ctx.fill()
+            ctx.stroke()
+            ctx.clearRect(1010, 91, 50, 20)
+            ctx.fillText(`${value}%`, 1010, 101)
+        }
+    }
+
+
+    // #2
+    ctx2.lineWidth = 10
+    // Красная линия
+    ctx2.strokeStyle = 'red'
+    ctx2.beginPath()
+    ctx2.moveTo(100, 100)
+    // Подпись
+    ctx2.strokeStyle = "#000"
+    ctx2.font = "10pt Arial"
+    ctx2.textBaseline = "middle"
+    ctx2.fillText("0%", 110, 101)
+
+    function linearProgress2(width, value) {
+        if(value <= 100) {
+            ctx2.strokeStyle = 'red'
+            ctx2.lineTo((width-100)*value/100+100, 100)
+            ctx2.fill()
+            ctx2.stroke()
+            ctx2.clearRect(((width-100)*value/100)+100, 91, 50, 20)
+            ctx2.fillText(`${value}%`, ((width-100)*value/100)+110, 101)
+        }
+    }
+
+
+    // #3
+    ctx3.lineWidth = 10
+    // Красная линия
+    ctx3.strokeStyle = 'red'
+    ctx3.beginPath()
+    // Подпись
+    ctx3.strokeStyle = "#000"
+    ctx3.font = "10pt Arial"
+    ctx3.textBaseline = "middle"
+    ctx3.fillText("0%", 190, 150)
+
+    let val3 = 100
+    let radval = 0
+    function linearProgress3(radius, value) {
+        if(value <= 100) {
+            const rad = 2 * value / 100
+            ctx3.strokeStyle = 'red'
+            ctx3.beginPath()
+            ctx3.arc(200, 150, radius, 0, Math.PI*rad, false)
+            ctx3.stroke()
+            ctx3.strokeStyle = 'white'
+            ctx3.clearRect(180, 140, 40, 20)
+            if(value < 100) ctx3.fillText(`${value}%`, 190, 150)
+            else ctx3.fillText(`${value}%`, 185, 150)
+        }
+    }
+
+    // Start
+    let interval = 0
+    setInterval(()=> {
+        interval++
+        linearProgress(1000, interval) // ширина и %
+        linearProgress2(1000, interval) // ширина и %
+        linearProgress3(100, interval) // радиус и %
+    }, 50)
+
+
+</script>
+</body>
+</html>
