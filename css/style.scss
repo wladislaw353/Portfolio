@@ -477,6 +477,7 @@ section.pwa {
     position: relative;
     z-index: 2;
     visibility: hidden;
+    opacity: 0;
     .waves-wrapper {
         flex-direction: column;
         align-items: center;

@@ -72,9 +72,15 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
 
         // make pwa section visible
         if (scrolled > viewport * 2) {
-            $('section.pwa').css('visibility', 'visible')
+            $('section.pwa').css({
+                'opacity': '1',
+                'visibility': 'visible'
+            })
         } else {
-            $('section.pwa').css('visibility', 'hidden')
+            $('section.pwa').css({
+                'opacity': '0',
+                'visibility': 'hidden'
+            })
         }
 
         // creative section
