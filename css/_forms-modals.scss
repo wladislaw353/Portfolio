@@ -217,6 +217,11 @@ form {
             padding-bottom: em(10);
             & > div {
                 min-width: em(70);
+                @include _500 {
+                    &:last-child {
+                        display: none;
+                    }
+                }
             }
             button {
                 width: em(20);
@@ -240,8 +245,14 @@ form {
                     transform: scale(1.2);
                 }
             }
-            span {
+            span, a {
                 color: #9594a1;
+                cursor: pointer !important;
+                @include _700 {
+                    span {
+                        display: none;
+                    }
+                }
             }
         }
         iframe {

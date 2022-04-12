@@ -294,14 +294,31 @@ section.about {
     }
 }
 
+section.mooving-cases {
+    background: #14152a;
+    display: flex;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 3;
+    img {
+        width: 25%;
+        @include _650 {
+            width: 35%;
+        }
+    }
+}
+
 section.skills {
     background: #14152a;
-    padding: em(100) 0;
+    padding: em(100) 0 0;
     position: relative;
     z-index: 3;
     .flex-container {
         gap: 10%;
         align-items: flex-start;
+        @include _650 {
+            flex-direction: column;
+        }
         .item {
             min-width: 45%;
         }
@@ -336,17 +353,6 @@ section.skills {
     }
 }
 
-section.mooving-cases {
-    background: #14152a;
-    display: flex;
-    overflow-x: hidden;
-    position: relative;
-    z-index: 3;
-    img {
-        width: 25%;
-    }
-}
-
 section.portfolio {
     padding: em(100) 0;
     background: #14152a;
@@ -374,6 +380,12 @@ section.portfolio {
     .grid-container {
         grid-template-columns: repeat(3, 1fr);
         grid-gap: em(30);
+        @include _850 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include _500 {
+            grid-template-columns: repeat(1, 1fr);
+        }
         .item {
             border-radius: 15px;
             overflow: hidden;
@@ -393,7 +405,6 @@ section.portfolio {
                     position: absolute;
                     left: 0;
                     top: -19px;
-                    width: 100%;
                 }
                 .tag {
                     margin: 0;
@@ -426,6 +437,7 @@ section.portfolio {
                         justify-content: center;
                         transition: transform 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33), box-shadow 0.3s ease;
                         transform: scale(1.01);
+                        flex-shrink: 0;
                         i {
                             color: #ee61c7;
                             font-size: em(20);
@@ -595,7 +607,6 @@ section.pwa {
         }
     }
 }
-
 
 section.creative {
     background: #14152a;
