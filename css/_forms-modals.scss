@@ -208,6 +208,12 @@ form {
         top: 5vh;
         padding: em(10);
         border-radius: 15px;
+        @include _500 {
+            left: 1vw;
+            top: 1vh;
+            width: 98vw;
+            height: 98vh;
+        }
         &.active {
             transform: scale(1);
         }
@@ -248,9 +254,15 @@ form {
             span, a {
                 color: #9594a1;
                 cursor: pointer !important;
+                i {
+                    display: none;
+                }
                 @include _700 {
                     span {
                         display: none;
+                    }
+                    i {
+                        display: inline-block;
                     }
                 }
             }

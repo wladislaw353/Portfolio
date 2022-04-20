@@ -155,7 +155,7 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         $('#modalq-' + modal_id).find('iframe').attr('src', modal_url)
         $('.modalq-wrapper').fadeIn()
         $('#modalq-' + modal_id).addClass('active')
-        $('#modalq-' + modal_id).find('a').html(modal_title + ' <span>' + modal_url.replace('https:/', '') + '</span>').attr('href', modal_url)
+        $('#modalq-' + modal_id).find('a').html('<i class="fa-solid fa-link"></i>' + modal_title + ' <span>' + modal_url.replace('https:/', '') + '</span>').attr('href', modal_url)
         $('#cursor, #cursor-bg').css('transform', 'scale(0)')
         $('body').css({
             'overflow': 'hidden',

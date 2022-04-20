@@ -157,6 +157,9 @@ header {
     user-select: none;
     pointer-events: none;
     opacity: 0;
+    @include _767 {
+        display: none !important;
+    }
 }
 #cursor-bg {
     z-index: 9997;
@@ -174,12 +177,18 @@ header {
     user-select: none;
     pointer-events: none;
     opacity: 0;
+    @include _767 {
+        display: none !important;
+    }
 }
 
 h2 {
     font-size: em(50);
     margin-bottom: em(30, 50);
-    white-space: nowrap;
+    @include _500 {
+        font-size: em(48);
+        margin-bottom: em(30, 48);
+    }
 }
 
 [data-typeit-id] .ti-cursor {
@@ -195,12 +204,35 @@ section.hello {
     background: #14152a;
     position: relative;
     // z-index: 3;
+    .holder {
+        @include _950 {
+            max-width: 690px;
+        }
+    }
     .flex-container {
         gap: 7%;
+        @include _1305 {
+            gap: 5%;
+        }
+        @include _950 {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: em(30);
+        }
+        @include _700 {
+            align-items: center;
+        }
         .photo {
             width: 40%;
             max-width: em(431);
             position: relative;
+            @include _1305 {
+                width: 25%;
+            }
+            @include _950 {
+                width: 60%;
+                max-width: em(250);
+            }
             .proto-wrapper {
                 border-radius: 100%;
                 overflow: hidden;
@@ -216,16 +248,19 @@ section.hello {
                     border-radius: 100%;
                 }
             }
-            // &:after {
-            //     content: '';
-            //     position: absolute;
-            //     width: 90%;
-            //     height: 90%;
-            //     left: 5%;
-            //     top: 5%;
-            //     border-radius: 100%;
-            //     box-shadow: 0 0 0 5px solid #14152a;
-            // }
+            & + div {
+                @include _700 {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    h2 {
+                        text-align: center;
+                        .ti-cursor {
+                            display: none !important;
+                        }
+                    }
+                }
+            }
         }
         .soq {
             display: flex;
@@ -494,12 +529,18 @@ section.pwa {
         flex-direction: column;
         align-items: center;
         overflow: hidden;
+        @include _500 {
+            height: em(80);
+        }
         svg {
             display: block;
             path {
                 animation: wave-big-1 6s linear infinite;
             }
         }
+    }
+    .btn {
+        background: #fcfcfc;
     }
     .fixed-section {
         padding: em(60) em(15);
@@ -511,12 +552,21 @@ section.pwa {
         background: #fcfcfc;
         max-width: unset;
         z-index: -1;
+        @include _850 {
+            padding: em(30) em(15);
+        }
         h2 {
             display: flex;
             align-items: center;
             gap: em(10);
+            @include _500 {
+                font-size: em(40);
+            }
             img {
                 width: em(30);
+                @include _500 {
+                    width: em(25);
+                }
             }
         }
         .flex-container {
@@ -525,6 +575,10 @@ section.pwa {
                 h3 {
                     font-size: em(30);
                     margin-bottom: em(20, 30);
+                    @include _500 {
+                        font-size: em(25);
+                        margin-bottom: em(20, 25);
+                    }
                     & + div {
                         backdrop-filter: blur(10px);
                         border-radius: 0 10px 10px 0;
@@ -542,6 +596,9 @@ section.pwa {
     }
     .fixed-section + .waves-wrapper {
         transform: scale(-1);
+        @include _500 {
+            height: em(70);
+        }
         svg {
             path {
                 animation: wave-big-2 6s linear infinite;
@@ -551,6 +608,9 @@ section.pwa {
     .phone {
         position: relative;
         display: inline-block;
+        @include _850 {
+            display: none;
+        }
         video {
             height: calc(80vh - 100px);
             border: 5px solid #121212;
@@ -589,6 +649,7 @@ section.pwa {
         bottom: -10vh;
         transform: rotate(330deg);
         align-items: center;
+        z-index: -1;
         .col {
             display: flex;
             flex-direction: column;
@@ -612,6 +673,10 @@ section.creative {
     background: #14152a;
     position: relative;
     z-index: 2;
+    h2 {
+        text-align: center;
+        padding: 0 em(15, 50);
+    }
     .fixed-img {
         height: 100vh;
         z-index: 3;
