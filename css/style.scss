@@ -44,7 +44,7 @@ header {
         $bar-height: 2px;
         $bar-spacing: 7px;
         $bar-color: #fff;
-        $breakpoint: 1000px;
+        $breakpoint: 550px;
         position: relative;
         background: $bar-color;
         transition: all 0ms 300ms;
@@ -94,12 +94,14 @@ header {
         }
     }
     nav {
-        @include _767 {
+        @include _550 {
             position: absolute;
             left: 0;
-            top: em(50);
+            top: em(55);
             width: 100%;
-            background: #fff;
+            background: #14152a;
+            border-bottom: 2px solid #bfbefc;
+            box-shadow: 0 9px 14px #bfbefc7a;
             display: none;
         }
         & > ul {
@@ -108,7 +110,7 @@ header {
                     color: #9fa3be;
                 }
             }
-            @include _767 {
+            @include _550 {
             }
             & > li {
                 list-style: none;
@@ -239,6 +241,9 @@ section.hello {
                 transform-origin: left;
                 position: relative;
                 z-index: 9998;
+                @include _700 {
+                    transform-origin: bottom;
+                }
                 &.hide {
                     opacity: 0;
                     visibility: hidden;
