@@ -27,7 +27,7 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         .go()
 
     const viewport = window.innerHeight
-    const pageHeight = document.documentElement.scrollHeight
+    let pageHeight = document.documentElement.scrollHeight
     let scrolledTemp = 0
     let scrolled = 0
     $(document).scroll(function() {
@@ -87,8 +87,8 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         const $creativeTitle        = $('section.creative .fixed-img h2')
         const $creativeBg           = $('section.creative .fixed-img > .bg')
         const $creativeIframe       = $('section.creative .iframe-wrapper')
-        const creativeSectionOffset = $('section.creative').offset().top
-        const creativeOffset = $fixedImg.offset().top
+        let creativeSectionOffset = $('section.creative').offset().top
+        let creativeOffset = $fixedImg.offset().top
         if (scrolled - creativeOffset > -50) {
             const scrolledIntoCreative = scrolled - creativeSectionOffset
             const creativeScale = 2 - scrolledIntoCreative / 900
@@ -125,6 +125,10 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         
     })
 
+    function refreshData() {
+        pageHeight = document.documentElement.scrollHeight
+    }
+
     // portfolio fiter
     $('.filter button').click(function() {
         const type = $(this).index()
@@ -140,6 +144,7 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         } else {
             $(`[data-type]`).show()
         }
+        refreshData()
     })
 
 
