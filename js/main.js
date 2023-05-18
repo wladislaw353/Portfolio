@@ -23,7 +23,7 @@ $(document).ready(()=> {const wwt=1;function is_home(){return($('body').hasClass
         .pause(200)
         .type('<br>')
         .pause(700)
-        .type("I'm Front-end Developer")
+        .type("I'm Full-stack Developer")
         .go()
 
     const viewport = window.innerHeight
